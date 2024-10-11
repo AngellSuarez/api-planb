@@ -34,4 +34,11 @@ module.exports = {
             .then(result => callBack(null,result))
             .catch(error => callBack(error))
     },
+    deleteOne:(id,callBack)=>{
+        knex("users")
+            .where({id})
+            .delete()
+            .then(result => callBack(null,result))
+            .catch(error => callBack(error))
+    }
 }

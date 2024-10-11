@@ -7,7 +7,8 @@ exports.up = function(knex) {
     table.string("correo"),
     table.string("NumDocumento",13).unique(),
     table.string("Celular",12),
-    table.string("password",90)
+    table.string("password",90),
+    table.string("Estado",12)
   })
 };
 

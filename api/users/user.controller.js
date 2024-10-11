@@ -1,4 +1,4 @@
-const { create, getAll, getOne, editOne, statusChange } = require("./user.service")
+const { create, getAll, getOne, editOne, statusChange, deleteOne } = require("./user.service")
 
 const { genSaltSync, hashSync } = require("bcrypt")
 
@@ -107,4 +107,27 @@ module.exports = {
             });
         });
     },
+    deleteOneUser:(req,res)=>{
+        const {id} = req.params
+
+        deleteOne(id,(err,result)=>{
+            if(err){
+                console.log(err)
+                return res.status(500).json({
+                    success:0,
+                    message:err.message
+                });
+            }
+            if(result === 0 ){
+                return res.status(404).json({
+                    success:0,
+                    message:"user not found"
+                });
+            }
+            return res.status(200).json({
+                message:"usuario borrado correctamente",
+                data:result
+            });
+        });
+    }
 }

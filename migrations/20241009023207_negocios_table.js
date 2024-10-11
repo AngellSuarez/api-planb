@@ -1,15 +1,9 @@
-/**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> }
- */
-exports.up = function(knex) {
-  
+exports.up = function(knex){
+    return knex.schema.createTable("negocios",function(table){
+        
+    })
 };
 
-/**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> }
- */
-exports.down = function(knex) {
-  
+exports.down = function(knex){
+    return knex.schema.droptableIfExists("negocios",true)
 };
