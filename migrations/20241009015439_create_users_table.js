@@ -1,6 +1,6 @@
 exports.up = function(knex){
     return knex.schema.createTable("users",function(table){
-        table.increments("id").primary();
+        table.bigIncrements("id").primary();
         table.string("PrimerNombre",30),
         table.string("SegundoNombre",30),
         table.string("PrimerApellido",30),
