@@ -13,7 +13,7 @@ exports.up = function(knex){
         table.string("genero",1),
         table.string("direccion",70),
         table.string("password",90),
-        table.string("Estado",12,).defaultTo("activo")
+        table.enum("Estado",["activo","desactivado"]).defaultTo("activo")
     });
 
 };

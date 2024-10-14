@@ -1,6 +1,6 @@
 exports.up = function(knex){
     return knex.schema.createTable("negocios",function(table){
-        table.bigIncrements("id").primary()
+        table.bigIncrements("id").primary(),
         table.string("NombreNegocio"),
         table.string("Direccion"),
         table.string("Ciudad"),
@@ -10,10 +10,11 @@ exports.up = function(knex){
         table.string("Telefono"),
         table.string("Correo"),
         table.string("TipoNegocio"),
-        table.string("Estado").defaultTo("activo")
+        table.string("Password",90),
+        table.enum("Estado",["activo","desactivado"]).defaultTo("activo")
     });
 };
 
 exports.down = function(knex){
-    return knex.schema.droptableIfExists("negocios",true)
+    return knex.schema.dropTableIfExists("negocios",true)
 };

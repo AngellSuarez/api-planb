@@ -3,11 +3,11 @@ exports.up = function(knex){
         table.bigIncrements("id").primary(),
         table.string("Nombre",50),
         table.string("Descripcion",150),
-        table.string("TipoCobro",8),
-        table.string("Precio").defaultTo(0),
-        table.bigIncrement("IdNegocio"),
-        table.foreign("IdNegocio").references("id").inTable("Negocios"),
-        table.string("Estado").defaultTo("activo")
+        table.enum("TipoCobro",["mensual","anual"]).defaultTo("mensual"),
+        table.float("Precio").defaultTo(0),
+        table.bigInteger("IdNegocio").unsigned(),
+        table.foreign("IdNegocio").references("id").inTable("negocios"),
+        table.enum("Estado",["activo","desactivado"]).defaultTo("activo")
     });
 };
 

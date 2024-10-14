@@ -3,12 +3,12 @@ exports.up = function(knex){
         table.bigIncrements("id").primary()
         table.string("Nombre"),
         table.date("FechaVencimiento"),
-        table.interger("Stock").defaultTo(0),
+        table.integer("Stock").defaultTo(0),
         table.float("PrecioUnitario"),
         table.string("Descripcion"),
-        table.interger("IdNegocio").unsigned();
+        table.bigInteger("IdNegocio").unsigned();
         table.foreign("IdNegocio").references("id").inTable("negocios"),
-        table.string("Estado").defaultTo("activo")
+        table.enum("Estado",["activo","desactivado"]).defaultTo("activo")
     });
 }
 
