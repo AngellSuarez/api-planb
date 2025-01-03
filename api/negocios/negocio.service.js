@@ -30,7 +30,7 @@ module.exports = {
     statusChange:(id,data,callBack)=>{
         knex("negocios")
             .where({id})
-            .update(data)
+            .update({Estado:data})
             .then(result=>callBack(null,result))
             .catch(error=>callBack(error))
     },

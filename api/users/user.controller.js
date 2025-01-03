@@ -100,8 +100,14 @@ module.exports = {
                     message:"user not found"
                 });
             }
+            if(!["activo","desactivado"].includes(Estado)){
+                return res.status(400).json({
+                    success:0,
+                    message:"Invalid Estado"
+                });
+            };
             return res.status(200).json({
-                succes:1,
+                success:1,
                 message:"Estado cambiado correctamente",
                 data:Estado
             });

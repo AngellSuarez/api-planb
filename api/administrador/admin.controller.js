@@ -82,9 +82,9 @@ module.exports = {
         });
     },
     changeEstado:(req,res)=>{
-        const body = req.body
+        const {Estado} = req.body
         const {id} = req.params
-        changeEstado(body,id,(err,result)=>{
+        changeEstado(Estado,id,(err,result)=>{
             if(err){
                 console.log(err)
                 return res.status(500).json({
@@ -98,9 +98,15 @@ module.exports = {
                     message:"Admin no encontrado"
                 });
             }
+            if(!["activo","desactivado"].includes(Estado)){
+                return res.status(400).json({
+                    success:0,
+                    message:"Invalid Estado"
+                })
+            }
             return res.status(200).json({
                 success:1,
-                data:result
+                data:Estado
             });
         });
     }
