@@ -1,14 +1,20 @@
 exports.up = function(knex){
     return knex.schema.createTable("productos",function(table){
         table.bigIncrements("id").primary()
-        table.string("Nombre"),
+        table.string("Nombre",40).NotNullable(),
         table.date("FechaVencimiento"),
         table.integer("Stock").defaultTo(0),
-        table.float("PrecioUnitario"),
-        table.string("Descripcion"),
+        table.float("PrecioUnitario").NotNullable(),
+        table.string("Descripcion",120),
         table.bigInteger("IdNegocio").unsigned();
-        table.foreign("IdNegocio").references("id").inTable("negocios"),
-        table.enum("Estado",["activo","desactivado"]).defaultTo("activo")
+        table
+            .foreign("IdNegocio")
+            .references("id")
+            .inTable("negocios")
+            .onDelete("CASCADE")
+        table
+            .enum("Estado",["activo","desactivado"])
+            .defaultTo("activo")
     });
 }
 
