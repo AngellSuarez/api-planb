@@ -38,15 +38,15 @@ module.exports = {
 
   editOneProducto: async (id, data) => {
     try {
-      const exist = await this.getOneProducto(id);
+      const exist = await knex("productos").where({id}).first();
       if (!exist) {
         const error = new Error(`El producto con id ${id} no existe para editar`);
         error.status = 404;
         throw error;
       }
 
-      await knex("productos").where({id}).update(data);
-      return await this.getOneProducto(id);
+      const producto = await knex("productos").where({id}).update(data);
+      return producto ;
     } catch (error) {
       error.status = error.status || 500;
       throw error;
@@ -56,7 +56,7 @@ module.exports = {
   changeEstadoProducto: async (id, estado) => {
     try {
 
-        const exist = await this.getOneProducto(id);
+        const exist = await knex("productos").where({id}).first();
         if(!exist){
             const error = new Error(`Error al conseguir el producto con el id ${id} para cambiar su estado`);
             error.status = 404;
@@ -64,7 +64,7 @@ module.exports = {
         }
 
       await knex("productos").where({ id }).update({ Estado: estado });
-      return await this.getOneProducto(id);
+      return await knex("productos").where({id}).first();
 
     } catch (error) {
       error.status = error.status || 500;

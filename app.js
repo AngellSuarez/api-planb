@@ -7,7 +7,7 @@ const cors = require("cors")
 const userRouter = require("./api/users/user.routes")
 const adminRouter = require("./api/administrador/admin.routes")
 const negocioRouter = require("./api/negocios/negocio.routes")
-const paseadoRouter = require("./api/paseadores/paseador.routes")
+// const paseadoRouter = require("./api/paseadores/paseador.routes")
 const searchRouter = require("./api/buscadorGeneral/buscador.router")
 const productoRouter = require("./api/productos/productos.routes")
 
@@ -24,7 +24,7 @@ app.use(cors())
 app.use("/api/users/",userRouter);
 app.use("/api/admin/",adminRouter);
 app.use("/api/negocios/",negocioRouter);
-app.use("/api/paseador/",paseadoRouter);
+// app.use("/api/paseador/",paseadoRouter);
 app.use("/api/search/",searchRouter);
 app.use("/api/productos/",productoRouter);
 
