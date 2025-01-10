@@ -11,6 +11,7 @@ const negocioRouter = require("./api/negocios/negocio.routes")
 const searchRouter = require("./api/buscadorGeneral/buscador.router")
 const productoRouter = require("./api/productos/productos.routes")
 const servicioRouter = require("./api/servicios/servicios.routes")
+const planesRouter = require("./api/planes/planes.routes")
 
 app.get("/api", (req,res)=>{
     res.json({
@@ -28,7 +29,8 @@ app.use("/api/negocios/",negocioRouter);
 // app.use("/api/paseador/",paseadoRouter);
 app.use("/api/search/",searchRouter);
 app.use("/api/productos/",productoRouter);
-app.use("/api/servicios/",servicioRouter)
+app.use("/api/servicios/",servicioRouter);
+app.use("/api/planes/",planesRouter);
 
 app.listen(process.env.APP_PORT,()=>{
     console.log("Server up and running on PORT:",process.env.APP_PORT)
